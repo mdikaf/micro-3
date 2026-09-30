@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LKPD Interaktif - Sistem Operasi</title>
+<style>
+:root{
+  --bg:#f4f7fb;--card:#fff;--ink:#182235;--muted:#65748b;
+  --primary:#315efb;--primary2:#2447c7;--line:#dce3ee;
+  --green:#16a36a;--yellow:#fff4c2;--red:#fff0f0;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.55}
+.container{max-width:920px;margin:auto;padding:22px}
+header{background:linear-gradient(135deg,#315efb,#6a7dff);color:white;border-radius:22px;padding:30px 28px;margin-bottom:18px;box-shadow:0 12px 30px #315efb22}
+.badge{display:inline-block;background:#ffffff25;border:1px solid #ffffff55;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:bold}
+h1{margin:10px 0 5px;font-size:32px}
+h2{margin-top:0;font-size:21px}
+h3{font-size:17px;margin-bottom:7px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 5px 16px #1a31520b}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+label{font-weight:bold;font-size:14px}
+input,textarea,select{width:100%;margin-top:6px;border:1px solid #cfd8e6;border-radius:11px;padding:11px 12px;font:inherit;background:white}
+textarea{min-height:90px;resize:vertical}
+.small{color:var(--muted);font-size:13px}
+.mission{background:#eef3ff;border-left:5px solid var(--primary);padding:15px 17px;border-radius:10px}
+.choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.choice{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fafcff}
+.choice input{width:auto;margin-right:7px}
+.case{background:#fafbfe;border:1px solid var(--line);border-radius:14px;padding:15px;margin:12px 0}
+.case strong{color:var(--primary2)}
+.sequence{display:grid;gap:10px}
+.seqrow{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:start}
+.num{width:34px;height:34px;border-radius:50%;background:#e9efff;color:var(--primary2);font-weight:bold;display:flex;align-items:center;justify-content:center}
+button{border:0;border-radius:12px;padding:13px 18px;font-weight:bold;font-size:15px;cursor:pointer}
+.primary{background:var(--primary);color:white}
+.primary:hover{background:var(--primary2)}
+.secondary{background:white;border:1px solid var(--line);color:var(--ink)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;position:sticky;bottom:12px;background:#ffffffea;backdrop-filter:blur(8px);padding:12px;border:1px solid var(--line);border-radius:16px}
+.progress{height:9px;background:#e5eaf3;border-radius:99px;overflow:hidden;margin:12px 0}
+.progressbar{height:100%;background:var(--primary);width:0%;transition:.3s}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+.check{accent-color:var(--primary)}
+@media(max-width:650px){.grid,.choice-grid{grid-template-columns:1fr}h1{font-size:25px}.container{padding:12px}}
+@media print{
+  body{background:white;font-size:11pt}
+  .actions,header .badge,.progress,.small.print-hide{display:none!important}
+  .container{max-width:none;padding:0}
+  .card{box-shadow:none;break-inside:avoid;margin:10px 0}
+  textarea,input{border:1px solid #888}
+  header{background:white;color:black;border:2px solid #333;box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <span class="badge">LKPD INTERAKTIF • INFORMATIKA • TP 10.8</span>
+  <h1>🕵️ DETektif Sistem Operasi</h1>
+  <div>Menjelaskan peran dan fungsi sistem operasi dalam mengelola perangkat keras dan perangkat lunak komputer.</div>
+</header>
+
+<div class="card">
+  <h2>👤 Identitas</h2>
+  <div class="grid">
+    <div><label>Nama</label><input id="nama" placeholder="Tulis nama lengkap"></div>
+    <div><label>Kelas</label><input id="kelas" placeholder="Contoh: X-1"></div>
+    <div><label>Kelompok</label><input id="kelompok" placeholder="Contoh: Kelompok 1"></div>
+    <div><label>Tanggal</label><input id="tanggal" type="date"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🎯 Mission Start</h2>
+  <div class="mission">
+    Bayangkan komputer seperti sebuah restoran. Ada pelanggan, dapur, bahan makanan, dan pegawai.
+    <b>Siapa yang mengatur semuanya agar berjalan sesuai kebutuhan?</b>
+  </div>
+  <p><b>Jawabanmu:</b></p>
+  <textarea id="pemantik" placeholder="Tuliskan pendapatmu..."></textarea>
+</div>
+
+<div class="card">
+  <h2>🧠 Misi 1 — Kenali Peran Sistem Operasi</h2>
+  <p>Menurut pemahamanmu, apa yang dilakukan sistem operasi ketika kita menggunakan komputer?</p>
+  <textarea id="misi1" placeholder="Jelaskan dengan bahasamu sendiri..."></textarea>
+  <p class="small">Petunjuk: pikirkan hubungan antara pengguna, aplikasi, perangkat keras, dan sumber daya komputer.</p>
+</div>
+
+<div class="card">
+  <h2>🔎 Misi 2 — Siapa yang Bertugas?</h2>
+  <p>Pasangkan setiap situasi dengan fungsi utama sistem operasi yang sesuai.</p>
+
+  <div class="case">
+    <strong>A.</strong> Dimas membuka banyak aplikasi sehingga komputer terasa lambat.<br>
+    <select id="kasusA">
+      <option value="">-- Pilih fungsi --</option>
+      <option>Manajemen memori</option><option>Manajemen perangkat</option>
+      <option>Manajemen proses</option><option>Keamanan dan hak akses</option>
+    </select>
+  </div>
+
+  <div class="case">
+    <strong>B.</strong> Sebuah flashdisk dipasang dan komputer harus mengenalinya.<br>
+    <select id="kasusB">
+      <option value="">-- Pilih fungsi --</option>
+      <option>Manajemen memori</option><option>Manajemen perangkat</option>
+      <option>Manajemen proses</option><option>Keamanan dan hak akses</option>
+    </select>
+  </div>
+
+  <div class="case">
+    <strong>C.</strong> Komputer meminta kata sandi sebelum pengguna masuk ke akun.<br>
+    <select id="kasusC">
+      <option value="">-- Pilih fungsi --</option>
+      <option>Manajemen memori</option><option>Manajemen perangkat</option>
+      <option>Manajemen proses</option><option>Keamanan dan hak akses</option>
+    </select>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🧩 Misi 3 — Kelompokkan</h2>
+  <p>Pilih kategori yang paling tepat.</p>
+  <div class="grid">
+    <div class="choice"><b>CPU</b>
+      <select id="cpu"><option value="">-- kategori --</option><option>Hardware</option><option>Software</option></select>
+    </div>
+    <div class="choice"><b>Windows</b>
+      <select id="windows"><option value="">-- kategori --</option><option>Hardware</option><option>Software</option></select>
+    </div>
+    <div class="choice"><b>RAM</b>
+      <select id="ram"><option value="">-- kategori --</option><option>Hardware</option><option>Software</option></select>
+    </div>
+    <div class="choice"><b>Google Chrome</b>
+      <select id="chrome"><option value="">-- kategori --</option><option>Hardware</option><option>Software</option></select>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>⚙️ Misi 4 — Kasus Dimas</h2>
+  <div class="case">
+    Dimas membuka Chrome, Word, dan pemutar musik secara bersamaan. Setelah beberapa saat komputer menjadi lambat.
+    Setelah beberapa aplikasi ditutup, komputer kembali lebih responsif.
+  </div>
+  <label>Mengapa menutup beberapa aplikasi dapat membuat komputer lebih responsif?</label>
+  <textarea id="dimas1" placeholder="Jelaskan dengan singkat..."></textarea>
+</div>
+
+<div class="card">
+  <h2>🚀 Mission Check</h2>
+  <p><b>Sebutkan satu fungsi sistem operasi dan berikan satu contoh dalam penggunaan sehari-hari.</b></p>
+  <textarea id="check1" placeholder="Contoh: sistem operasi berfungsi untuk ..."></textarea>
+</div>
+
+<div class="card">
+  <h2>📝 Kesimpulan Singkat</h2>
+  <textarea id="kesimpulan" placeholder="Menurut saya, sistem operasi penting karena ..."></textarea>
+</div>
+
+<div class="card">
+  <h2>📊 Cek Kelengkapan</h2>
+  <div class="progress"><div class="progressbar" id="progressbar"></div></div>
+  <p id="progressText" class="small">0% terisi</p>
+  <button class="secondary" onclick="cekProgress()">🔍 Cek kelengkapan</button>
+</div>
+
+<div class="actions">
+  <button class="secondary" onclick="simpan()">💾 Simpan sementara</button>
+  <button class="secondary" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+  <button class="primary" onclick="generatePDF()">📄 Generate PDF</button>
+  <button class="secondary" onclick="resetForm()">↻ Mulai ulang</button>
+</div>
+
+<footer>LKPD Interaktif Sistem Operasi • TP 10.8 • Durasi ±15 menit • Hasil PDF berisi jawaban siswa.</footer>
+</div>
+
+<script>
+const ids=['nama','kelas','kelompok','tanggal','pemantik','misi1',
+'kasusA','kasusB','kasusC','cpu','windows','ram','chrome','dimas1','check1','kesimpulan'];
+
+function saveState(){
+  const data={};
+  ids.forEach(id=>{const e=document.getElementById(id); if(e)data[id]=e.value});
+  localStorage.setItem('lkpdSO10_8',JSON.stringify(data));
+}
+function loadState(){
+  try{
+    const data=JSON.parse(localStorage.getItem('lkpdSO10_8')||'{}');
+    ids.forEach(id=>{const e=document.getElementById(id);if(e&&data[id]!=null)e.value=data[id]});
+  }catch(e){}
+}
+function simpan(){saveState();alert('Jawaban sementara sudah disimpan di browser perangkat ini.');cekProgress();}
+function cekProgress(){
+  let filled=0;
+  ids.forEach(id=>{const e=document.getElementById(id);if(e&&String(e.value).trim()!=='')filled++});
+  const pct=Math.round(filled/ids.length*100);
+  document.getElementById('progressbar').style.width=pct+'%';
+  document.getElementById('progressText').textContent=pct+'% terisi ('+filled+'/'+ids.length+' bagian)';
+}
+function generatePDF(){
+  saveState();
+  cekProgress();
+  const nama=document.getElementById('nama').value.trim();
+  if(!nama){alert('Isi nama terlebih dahulu sebelum membuat PDF.');document.getElementById('nama').focus();return;}
+  window.print();
+}
+function resetForm(){
+  if(confirm('Hapus semua jawaban pada perangkat ini?')){
+    localStorage.removeItem('lkpdSO10_8');
+    ids.forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});
+    cekProgress();
+  }
+}
+ids.forEach(id=>{
+  const e=document.getElementById(id);
+  if(e)e.addEventListener('input',cekProgress);
+});
+loadState();cekProgress();
+</script>
+</body>
+</html>
